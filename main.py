@@ -91,7 +91,7 @@ def create_report(id_user):
     submit = Report(type_report = type_report, content = content, phone = phone, date = date , image_url= request.host_url + 'report/image/' + str(get_id.id), img=pic.read(), name=filename, mimetype=mimetype,user_id=current_user_id)
     db.session.add(submit)
     db.session.commit()
-    return jsonify({'message': 'report submit success'}), 201
+    return jsonify({'message': 'Report submit success'}), 201
 
 # == REPORT FORM GET DATA == 
 
@@ -105,6 +105,27 @@ def get_reports(id_user):
         output.append(report_data)
     return jsonify({'data': output})
 
+@app.route('/admin/reports', methods=['GET'])
+def get_reports():
+    reports = Report.query.all()
+    output = []
+    for report in reports:
+        report_data = {'id': report.id, 'type_report': report.type_report, 'content': report.content, 'phone': report.phone, 'status': report.status, 'date': report.date, 'image_url': report.image_url}
+        output.append(report_data)
+    return jsonify({'data': output})
+
+
+# == PUT UPDATE STATUS REPORT ==
+
+@app.route('/admin/report/<int:report_id>', methods=['PUT'])
+def update_report(report_id):
+    data = request.get_json()
+    report = Report.query.filter_by(id=report_id).first()
+    if not report:
+        return jsonify({'message': 'Report not found'}), 404
+    report.status = data['status']
+    db.session.commit()
+    return jsonify({'message': 'Report updated successfully!'})
 
 # @app.route('/todos/add/<id_user>', methods=['POST'])
 # def create_todo(id_user):
