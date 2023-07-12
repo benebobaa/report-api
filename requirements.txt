@@ -2,4 +2,4 @@ flask>=2.0.0
 gunicorn>=20.1.0
 flask_sqlalchemy>=3.0.0
 flask-cors>=3.0.10
-flask-bycrpt>=0.7.0
+Flask-Bcyrpt>=0.7.0
