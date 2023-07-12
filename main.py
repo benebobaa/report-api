@@ -106,7 +106,7 @@ def get_reports(id_user):
     return jsonify({'data': output})
 
 @app.route('/admin/reports', methods=['GET'])
-def get_reports():
+def get_admin_reports():
     reports = Report.query.all()
     output = []
     for report in reports:
