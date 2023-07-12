@@ -87,6 +87,7 @@ def create_report(id_user):
     mimetype = pic.mimetype
     submit_id = Helper(date = date) 
     db.session.add(submit_id)
+    db.session.commit()
     get_id = Helper.query.order_by(Helper.id.desc()).first()
     submit = Report(type_report = type_report, content = content, phone = phone, date = date , image_url= request.host_url + 'report/image/' + str(get_id), img=pic.read(), name=filename, mimetype=mimetype,user_id=current_user_id)
     db.session.add(submit)
