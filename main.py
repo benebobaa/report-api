@@ -14,6 +14,7 @@ app.config['SECRET_KEY'] = 'your-secret-key'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
+img_id = 0
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -83,7 +84,7 @@ def create_report(id_user):
     mimetype = pic.mimetype
     
     
-    submit = Report(type_report = type_report, content = content, phone = phone, date = date , image_url= request.host_url + 'report/image/' + Report.id, img=pic.read(), name=filename, mimetype=mimetype,user_id=current_user_id)
+    submit = Report(type_report = type_report, content = content, phone = phone, date = date , image_url= request.host_url + 'report/image/' + str(img_id + 1), img=pic.read(), name=filename, mimetype=mimetype,user_id=current_user_id)
     db.session.add(submit)
     db.session.commit()
     return jsonify({'message': 'report submit success'}), 201
