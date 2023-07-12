@@ -46,7 +46,7 @@ def login():
     else:
         return jsonify({'message': 'Invalid username or password'}), 401
 
-@app.route('/todos/add/<<id_user>>', methods=['POST'])
+@app.route('/todos/add/<id_user>', methods=['POST'])
 def create_todo(id_user):
     current_user_id = id_user
     data = request.get_json()
