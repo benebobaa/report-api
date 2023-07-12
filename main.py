@@ -25,7 +25,9 @@ class Todo(db.Model):
     completed = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
+    
+with app.app_context():
+    db.create_all()
 
 
 @app.route('/register', methods=['POST'])
