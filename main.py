@@ -114,6 +114,16 @@ def get_admin_reports():
         output.append(report_data)
     return jsonify({'data': output})
 
+# == DEL REPORTS ==
+@app.route('/admin/report/<int:report_id>', methods=['DELETE'])
+def del_admin_report(report_id):
+    report = Report.query.filter_by(id=report_id).first()
+    if not report:
+        return jsonify({'message': 'Report not found'}), 404
+    db.session.delete(report)
+    db.session.commit()
+    return jsonify({'message': 'Report deleted successfully!'})
+
 
 # == PUT UPDATE STATUS REPORT ==
 
