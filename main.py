@@ -9,7 +9,7 @@ import os
 
 app = Flask(__name__)
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///report.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testing_image.db'
 app.config['SECRET_KEY'] = 'your-secret-key'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
