@@ -88,7 +88,7 @@ def create_report(id_user):
     submit_id = Helper(date = date) 
     db.session.add(submit_id)
     get_id = Helper.query.order_by(Helper.id.desc()).first()
-    submit = Report(type_report = type_report, content = content, phone = phone, date = date , image_url= request.host + 'report/image/' + str(get_id.id), img=pic.read(), name=filename, mimetype=mimetype,user_id=current_user_id)
+    submit = Report(type_report = type_report, content = content, phone = phone, date = date , image_url= 'https://'+request.host + '/report/image/' + str(get_id.id), img=pic.read(), name=filename, mimetype=mimetype,user_id=current_user_id)
     db.session.add(submit)
     db.session.commit()
     return jsonify({'message': 'Report submit success'}), 201
