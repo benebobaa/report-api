@@ -9,7 +9,7 @@ import os
 
 app = Flask(__name__)
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testing_image2.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testing_image.db'
 app.config['SECRET_KEY'] = 'your-secret-key'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -88,7 +88,7 @@ def create_report(id_user):
     submit_id = Helper(date = date) 
     db.session.add(submit_id)
     get_id = Helper.query.order_by(Helper.id.desc()).first()
-    submit = Report(type_report = type_report, content = content, phone = phone, date = date , image_url= request.base_url + 'report/image/' + str(get_id.id), img=pic.read(), name=filename, mimetype=mimetype,user_id=current_user_id)
+    submit = Report(type_report = type_report, content = content, phone = phone, date = date , image_url= request.host + 'report/image/' + str(get_id.id), img=pic.read(), name=filename, mimetype=mimetype,user_id=current_user_id)
     db.session.add(submit)
     db.session.commit()
     return jsonify({'message': 'Report submit success'}), 201
