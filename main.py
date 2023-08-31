@@ -1,10 +1,10 @@
-from flask import Flask, jsonify, request, Response, requests
+from flask import Flask, jsonify, request, Response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
-import os
+import os, requests
 
 
 app = Flask(__name__)
