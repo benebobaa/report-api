@@ -91,6 +91,30 @@ def create_report(id_user):
     submit = Report(type_report = type_report, content = content, phone = phone, date = date , image_url= 'https://'+request.host + '/report/image/' + str(get_id.id), img=pic.read(), name=filename, mimetype=mimetype,user_id=current_user_id)
     db.session.add(submit)
     db.session.commit()
+    url = "https://onesignal.com/api/v1/notifications"
+
+    payload = {
+        "app_id":"58482fcd-5f0a-47f3-8fe2-81968252abaa",
+        "included_segments": ["All"],
+        "headings":{
+            "en":"Laporan Baru",
+            "id":"Laporan Baru"
+        },
+        "contents": {
+            "en": "Cek user admin untuk melihat laporan terbaru",
+            "id": "Cek user admin untuk melihat laporan terbaru"
+        },
+        "name": "M-REPORT"
+    }
+
+    headers = {
+        "Authorization": "Basic ZDNlMzY4YmYtZjlkYS00NDhmLWE0NzMtM2U3OGNjZmY3Mzc5",
+        "content-type": "application/json",
+        "accept" : "application/json"
+    }
+
+    response = request.post(url, json=payload, headers=headers)
+    print(response.text)
     return jsonify({'message': 'Report submit success'}), 201
 
 # == REPORT FORM GET DATA == 
