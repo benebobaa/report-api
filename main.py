@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify, request, Response, requests
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_bcrypt import Bcrypt
@@ -113,7 +113,7 @@ def create_report(id_user):
         "accept" : "application/json"
     }
 
-    response = request.post(url, json=payload, headers=headers)
+    response = requests.post(url, json=payload, headers=headers)
     print(response.text)
     return jsonify({'message': 'Report submit success'}), 201
 
