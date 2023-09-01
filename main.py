@@ -94,7 +94,7 @@ def create_report(id_user):
     url = "https://onesignal.com/api/v1/notifications"
 
     payload = {
-        "app_id":"58482fcd-5f0a-47f3-8fe2-81968252abaa",
+        "app_id":"79045777-5704-4935-a619-9eaf29e7f419",
         "included_segments": ["All"],
         "headings":{
             "en":"Laporan Baru",
@@ -108,7 +108,7 @@ def create_report(id_user):
     }
 
     headers = {
-        "Authorization": "Basic ZDNlMzY4YmYtZjlkYS00NDhmLWE0NzMtM2U3OGNjZmY3Mzc5",
+        "Authorization": "Basic ZTMyMGUxZWEtNWU5Ni00Mjc1LWE5MmItNWUzMDdmMDI3YWFl",
         "content-type": "application/json",
         "accept" : "application/json"
     }
