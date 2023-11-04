@@ -122,7 +122,7 @@ def create_report(id_user):
 @app.route('/reports/<id_user>', methods=['GET'])
 def get_reports(id_user):
     current_user_id = id_user
-    reports = Report.query.filter_by(user_id=current_user_id).all()
+    reports = Report.query.filter_by(user_id=current_user_id).order_by(desc(Report.id)).all()
     output = []
     for report in reports:
         report_data = {'id': report.id, 'type_report': report.type_report, 'content': report.content, 'phone': report.phone, 'status': report.status, 'date': report.date, 'image_url': report.image_url}
@@ -131,7 +131,7 @@ def get_reports(id_user):
 
 @app.route('/admin/reports', methods=['GET'])
 def get_admin_reports():
-    reports = Report.query.all()
+    reports = Report.query.order_by(desc(Report.id)).all()
     output = []
     for report in reports:
         report_data = {'id': report.id, 'type_report': report.type_report, 'content': report.content, 'phone': report.phone, 'status': report.status, 'date': report.date, 'image_url': report.image_url}
