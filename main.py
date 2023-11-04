@@ -5,6 +5,7 @@ from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 import os, requests
+from sqlalchemy import desc
 
 
 app = Flask(__name__)
